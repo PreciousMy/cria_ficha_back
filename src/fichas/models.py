@@ -135,6 +135,6 @@ class Classe_Armadura(models.Model):
     id_Ficha =  models.TextField()
     id_Armadura =  models.TextField()
     classe_modificador =  models.TextField()
-    
+
     def__str__(self): # type: ignore
         return f"{self.nome}" # type: ignore
