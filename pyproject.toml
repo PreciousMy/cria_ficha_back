@@ -9,7 +9,9 @@ readme = "README.md"
 requires-python = ">=3.10, <4.0"
 dependencies = [
     "django (>=5.2.1,<6.0.0)",
-    "python-dotenv (>=1.1.0,<2.0.0)"
+    "python-dotenv (>=1.1.0,<2.0.0)",
+    "djangorestframework (>=3.16.0,<4.0.0)",
+    "django-filter (>=25.1,<26.0)"
 ]
 
 [tool.poetry]
@@ -26,7 +28,9 @@ pre-commit = "^4.2.0"
 
 [tool.taskipy.tasks]
 qos = { cmd = "black src & isort src & pylint src", help = "Executa todas as ferramentas de qualidade de código."}
-dev = {cmd “python manage.py runserver”}
+dev = { cmd = "python src/manage.py runserver"}
+mak = { cmd = "python src/manage.py makemigrations"}
+mig = { cmd = "python src/manage.py migrate"}
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
