@@ -1,42 +1,69 @@
-from django.shortcuts import render
-from rest_framework import filters, viewsets
-from .models import Usuario, Ficha, Pericia_Teste, Arma_Ataque, Arma, Magia, Lista_Magia, Armadura, Classe_Armadura
-from .serializers import UsuarioSerializer,FichaSerializer, Pericia_TesteSerializer, Arma_AtaqueSerializer, ArmaSerializer,MagiaSerializer, Lista_MagiaSerializer, ArmaduraSerializer, Classe_ArmaduraSerializer
+from rest_framework import viewsets
 
-# Create your views here.
+from .models import (
+    Armaduras,
+    Armas,
+    Ataque,
+    CaArmadura,
+    Ficha,
+    ListaMagia,
+    Magias,
+    Pericias,
+    Usuario,
+)
+from .serializer import (
+    ArmadurasSerializer,
+    ArmasSerializer,
+    AtaqueSerializer,
+    CaArmadurasSerializer,
+    FichaSerializer,
+    ListaMagiaSerializer,
+    MagiasSerializer,
+    PericiasSerializer,
+    UsuarioSerializer,
+)
 
-class UsuarioViewSet(viewsets.ReadOnlyModelViewSet):
+
+class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
 
-class FichaViewSet(viewsets.ReadOnlyModelViewSet):
+
+class FichaViewSet(viewsets.ModelViewSet):
     queryset = Ficha.objects.all()
     serializer_class = FichaSerializer
 
-class Pericia_TesteViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Pericia_Teste.objects.all()
-    serializer_class = Pericia_TesteSerializer
 
-class Arma_AtaqueViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Arma_Ataque.objects.all()
-    serializer_class = Arma_AtaqueSerializer
+class PericiasViewSet(viewsets.ModelViewSet):
+    queryset = Pericias.objects.all()
+    serializer_class = PericiasSerializer
 
-class ArmaiewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Arma.objects.all()
-    serializer_class = ArmaSerializer
 
-class MagiaViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Magia.objects.all()
-    serializer_class = MagiaSerializer
+class ListaMagiaViewSet(viewsets.ModelViewSet):
+    queryset = ListaMagia.objects.all()
+    serializer_class = ListaMagiaSerializer
 
-class Lista_MagiaViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Lista_Magia.objects.all()
-    serializer_class = Lista_MagiaSerializer
 
-class ArmaduraViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Armadura.objects.all()
-    serializer_class = ArmaduraSerializer
+class MagiasViewSet(viewsets.ModelViewSet):
+    queryset = Magias.objects.all()
+    serializer_class = MagiasSerializer
 
-class Classe_ArmaduraViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Classe_Armadura.objects.all()
-    serializer_class = Classe_ArmaduraSerializer
+
+class ArmadurasViewSet(viewsets.ModelViewSet):
+    queryset = Armaduras.objects.all()
+    serializer_class = ArmadurasSerializer
+
+
+class CaArmadurasViewSet(viewsets.ModelViewSet):
+    queryset = CaArmadura.objects.all()
+    serializer_class = CaArmadurasSerializer
+
+
+class AtaqueViewSet(viewsets.ModelViewSet):
+    queryset = Ataque.objects.all()
+    serializer_class = AtaqueSerializer
+
+
+class ArmasViewSet(viewsets.ModelViewSet):
+    queryset = Armas.objects.all()
+    serializer_class = ArmasSerializer

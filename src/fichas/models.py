@@ -1,140 +1,177 @@
-from django.db import models
 from django.contrib.auth import get_user_model
+from django.db import models
 
 # Create your models here.
 
-class Usuario(models.Model):
-    id = models.TextField()
-    nome = models.TextField()
-    senha = models.TextField()
-    email = models.TextField()
-    foto_perfil = models.CharField()
 
-    def__str__(self): # type: ignore
-        return f"{self.nome}" # type: ignore
+class Usuario(models.Model):
+    id_usuario = models.AutoField(primary_key=True)
+
+    nome = models.CharField(max_length=100, default="fulano")
+    email = models.CharField(max_length=70, default="email@gmail.com")
+    senha = models.CharField(blank=False, default="senhaFraca")
+
+    fichas = models.ManyToManyField(
+        "Ficha", related_name="lista", default=None, blank=True
+    )
+
+    def __str__(self):
+        return f"{self.nome}"
 
 
 class Ficha(models.Model):
-    id = models.TextField()
-    id_usuario = models.TextField()
-    nome_Personagem =  models.TextField()
+    id_ficha = models.AutoField(primary_key=True)
+
+    forc = models.IntegerField()
+    dest = models.IntegerField()
+    consti = models.IntegerField()
+    inte = models.IntegerField()
+    sab = models.IntegerField()
+    car = models.IntegerField()
+    forcMod = models.IntegerField()
+    destMod = models.IntegerField()
+    constiMod = models.IntegerField()
+    inteMod = models.IntegerField()
+    sabMod = models.IntegerField()
+    carMod = models.IntegerField()
+    bonusProef = models.IntegerField()
+    inspira = models.IntegerField()
+    sabPassiva = models.IntegerField()
+
+    nomePerso = models.CharField(max_length=100)
+    antecendente = models.CharField(max_length=70)
+    exp = models.IntegerField()
     nivel = models.IntegerField()
-    classe =  models.TextField()
-    raca = models.TextField()
-    antecendente = models.TextField()
-    alinhamento = models.TextField()
-    experiencia = models.IntegerField()
-    forca = models.IntegerField()
-    mod_forca = models.IntegerField()
-    destreza = models.IntegerField()
-    mod_destreza = models.IntegerField()
-    constituicao = models.IntegerField()
-    mod_constituicao = models.IntegerField()
-    inteligencia = models.IntegerField()
-    mod_inteligencia = models.IntegerField()
-    sabedoria = models.IntegerField()
-    mod_sabedoria = models.IntegerField()
-    carisma = models.IntegerField()
-    mod_carisma = models.IntegerField()
-    inspiracao = models.IntegerField()
-    bonus_proeficiencia = models.IntegerField()
-    idioma_proeficiencia= models.TextField()
+    classe = models.CharField(max_length=70)
+    alinhamento = models.CharField(max_length=70)
+    raca = models.CharField(max_length=70)
+    idiomas_Proeficiencias = models.TextField(
+        max_length=500, blank=True, null=True, default=""
+    )
+
     iniciativa = models.IntegerField()
+    qtd_DadosVida = models.IntegerField()
+    ideais = models.TextField(max_length=500, blank=True, null=True, default="")
+    vinculos = models.TextField(max_length=500, blank=True, null=True, default="")
+    tracosPerso = models.TextField(max_length=500, blank=True, null=True, default="")
+    fraquezas = models.TextField(max_length=500, blank=True, null=True, default="")
+    caractHabilidades = models.TextField(
+        max_length=500, blank=True, null=True, default=""
+    )
+    pvTotais = models.IntegerField()
+    dadoVida = models.CharField(max_length=7)
     deslocamento = models.FloatField()
-    pontos_vida = models.IntegerField()
-    caracteristica_habilidade = models.TextField()
-    dado_vida = models.TextField()
-    ideias = models.TextField()
-    taco_personalidade = models.TextField()
-    vinculo = models.TextField()
-    fraquesa = models.TextField()
-    pv_totais = models.IntegerField()
+
+    pCobre = models.IntegerField()
     pPrata = models.IntegerField()
     pOuro = models.IntegerField()
     pEletro = models.IntegerField()
-    pCobre = models.IntegerField()
-    pLatina = models.IntegerField()
-    descricao_Mag_Atk = models.TextField()
-    equipamento_descricao = models.TextField()
-    olho = models.TextField()
+    pPlatina = models.IntegerField()
+    descAtaque = models.TextField(max_length=500, blank=True, null=True, default="")
+    descEquip = models.TextField(max_length=500, blank=True, null=True, default="")
+
+    olhos = models.CharField(max_length=50)
+    cabelos = models.CharField(max_length=50)
     idade = models.IntegerField()
-    peso = models.FloatField()
-    cabelo = models.TextField()
     altura = models.FloatField()
-    pele = models.TextField()
-    aparencia = models.TextField()
-    historia_Personagem = models.TextField()
-    tesoro = models.TextField()
-    aliados_Org = models.TextField()
+    peso = models.FloatField()
+    pele = models.CharField(max_length=50)
 
-    def__str__(self): # type: ignore
-        return f"{self.nome}" # type: ignore
+    aparencia = models.TextField(max_length=500, blank=True, null=True, default="")
+    aliadosOrg = models.TextField(max_length=500, blank=True, null=True, default="")
+    outrasCaract = models.TextField(max_length=500, blank=True, null=True, default="")
+    historia = models.TextField(max_length=500, blank=True, null=True, default="")
+    tesouro = models.TextField(max_length=500, blank=True, null=True, default="")
 
-class Pericia_Teste(models.Model):
-    id_Pericia = models.TextField()
-    id_Ficha = models.TextField()
-    nome = models.TextField()
-    valor = models.IntegerField()
+    publica = models.BooleanField(default=False)
 
-    def__str__(self): # type: ignore
-        return f"{self.nome}" # type: ignore
+    usuario = models.ForeignKey("Usuario", on_delete=models.CASCADE)
 
-class Arma_Ataque(models.Model):
-    nome_AM = models.TextField()
-    id_Ficha = models.TextField()
-    bonus_AM = models.IntegerField()
+    def __str__(self):
+        return f"{self.nomePerso}"
 
-    def__str__(self): # type: ignore
-        return f"{self.nome}" # type: ignore
 
-class Arma (models.Model):
-    id_Arma = models.TextField()
-    id_AM  = models.TextField()
-    nome = models.TextField()
-    dano = models.TextField()
-    tipo_dano = models.TextField()
+class ListaMagia(models.Model):
 
-    def__str__(self): # type: ignore
-        return f"{self.nome}" # type: ignore
+    habiChave = models.CharField(max_length=70)
+    cdTR = models.IntegerField()
+    bonusAtq = models.IntegerField()
+    classeConju = models.CharField(max_length=100)
+    slot = models.CharField(max_length=30)
 
-class Magia(models.Model):
-    id_Magia = models.TextField()
-    nome = models.TextField()
-    nivel_magia = models.TextField()
-    alcance = models.TextField()
-    duracao = models.TextField()
-    componentes = models.TextField()
-    descricao = models.TextField()
-    tempo_Conjuracao = models.TextField()
+    ficha = models.ForeignKey("Ficha", on_delete=models.CASCADE, null=True)
+    magia = models.ForeignKey("Magias", on_delete=models.CASCADE)
 
-    def__str__(self): # type: ignore
-        return f"{self.nome}" # type: ignore
+    def __str__(self):
+        return f"{self.ficha}: {self.slot}- {self.magia}"
 
-class Lista_Magia(models.Model):
-    id_Ficha = models.TextField()
-    id_Magia = models.TextField()
-    classe_conjurador = models.TextField()
-    bonus_ataque = models.IntegerField()
-    equipado_Em = models.TextField()
-    CD_TR = models.IntegerField()
-    habilidade_chave = models.TextField()
 
-    def__str__(self): # type: ignore
-        return f"{self.nome}" # type: ignore
+class Magias(models.Model):
+    id_magias = models.AutoField(primary_key=True)
 
-class Armadura(models.Model):
-    id_Armadura = models.TextField()
-    nome =  models.TextField()
-    tipo =  models.TextField()
-    class_Armadura =  models.TextField() 
+    nome = models.CharField(max_length=100)
+    alcance = models.FloatField()
+    duracao = models.CharField(max_length=60)
+    tempoConju = models.CharField(max_length=60)
+    componentes = models.CharField(max_length=40)
+    descricao = models.TextField(max_length=500, blank=True, null=True, default="")
+    nivel = models.CharField(max_length=30)
 
-    def__str__(self): # type: ignore
-        return f"{self.nome}" # type: ignore
+    def __str__(self):
+        return f"{self.nivel} - {self.nome}"
 
-class Classe_Armadura(models.Model):
-    id_Ficha =  models.TextField()
-    id_Armadura =  models.TextField()
-    classe_modificador =  models.TextField()
 
-    def__str__(self): # type: ignore
-        return f"{self.nome}" # type: ignore
+class Pericias(models.Model):
+    id_pericias = models.AutoField(primary_key=True)
+
+    valor = models.IntegerField(default=2)
+    nome = models.CharField(max_length=40)
+
+    ficha = models.ForeignKey("Ficha", on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return f"{self.ficha}: +{self.valor} {self.nome}"
+
+
+class Ataque(models.Model):
+
+    bonus = models.IntegerField()
+
+    ficha = models.ForeignKey("Ficha", on_delete=models.CASCADE, null=True)
+    arma = models.ForeignKey("Armas", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.ficha}: {self.arma} +{self.bonus}"
+
+
+class Armas(models.Model):
+    id_armas = models.AutoField(primary_key=True)
+
+    nome = models.CharField(max_length=70)
+    dano = models.CharField(max_length=7)
+    tipoDano = models.CharField(max_length=30)
+
+    def __str__(self):
+        return f"{self.nome} +{self.dano}"
+
+
+class CaArmadura(models.Model):
+
+    caMod = models.IntegerField()
+
+    ficha = models.ForeignKey("Ficha", on_delete=models.CASCADE, null=True)
+    armadura = models.ForeignKey("Armaduras", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.ficha}: {self.armadura} = {self.caMod}"
+
+
+class Armaduras(models.Model):
+    id_armadura = models.AutoField(primary_key=True)
+
+    nome = models.CharField(max_length=70)
+    ca = models.IntegerField()
+    tipo = models.CharField(max_length=30)
+
+    def __str__(self):
+        return f"{self.nome} - {self.tipo}"
