@@ -1,60 +1,69 @@
 from rest_framework import viewsets
 
 from .models import (
-    Usuario,
+    Armaduras,
+    Armas,
+    Ataque,
+    CaArmadura,
     Ficha,
-    Pericias,
     ListaMagia,
     Magias,
-    Armaduras,
-    CaArmadura,
-    Ataque,
-    Armas
+    Pericias,
+    Usuario,
 )
 from .serializer import (
-    UsuarioSerializer,
+    ArmadurasSerializer,
+    ArmasSerializer,
+    AtaqueSerializer,
+    CaArmadurasSerializer,
     FichaSerializer,
-    PericiasSerializer,
     ListaMagiaSerializer,
     MagiasSerializer,
-    ArmadurasSerializer,
-    CaArmadurasSerializer,
-    AtaqueSerializer,
-    ArmasSerializer
+    PericiasSerializer,
+    UsuarioSerializer,
 )
+
 
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
 
+
 class FichaViewSet(viewsets.ModelViewSet):
-    queryset = Ficha.objects.all();
+    queryset = Ficha.objects.all()
     serializer_class = FichaSerializer
 
+
 class PericiasViewSet(viewsets.ModelViewSet):
-    queryset = Pericias.objects.all();
+    queryset = Pericias.objects.all()
     serializer_class = PericiasSerializer
 
+
 class ListaMagiaViewSet(viewsets.ModelViewSet):
-    queryset = ListaMagia.objects.all();
+    queryset = ListaMagia.objects.all()
     serializer_class = ListaMagiaSerializer
 
+
 class MagiasViewSet(viewsets.ModelViewSet):
-    queryset = Magias.objects.all();
+    queryset = Magias.objects.all()
     serializer_class = MagiasSerializer
 
+
 class ArmadurasViewSet(viewsets.ModelViewSet):
-    queryset = Armaduras.objects.all();
+    queryset = Armaduras.objects.all()
     serializer_class = ArmadurasSerializer
 
+
 class CaArmadurasViewSet(viewsets.ModelViewSet):
-    queryset = CaArmadura.objects.all();
+    queryset = CaArmadura.objects.all()
     serializer_class = CaArmadurasSerializer
 
+
 class AtaqueViewSet(viewsets.ModelViewSet):
-    queryset = Ataque.objects.all();
+    queryset = Ataque.objects.all()
     serializer_class = AtaqueSerializer
 
+
 class ArmasViewSet(viewsets.ModelViewSet):
-    queryset = Armas.objects.all();
+    queryset = Armas.objects.all()
     serializer_class = ArmasSerializer

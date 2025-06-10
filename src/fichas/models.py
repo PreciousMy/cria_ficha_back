@@ -1,7 +1,8 @@
-from django.db import models
 from django.contrib.auth import get_user_model
+from django.db import models
 
 # Create your models here.
+
 
 class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True)
@@ -10,10 +11,13 @@ class Usuario(models.Model):
     email = models.CharField(max_length=70, default="email@gmail.com")
     senha = models.CharField(blank=False, default="senhaFraca")
 
-    fichas = models.ManyToManyField("Ficha",related_name="lista",default=None,blank=True)
+    fichas = models.ManyToManyField(
+        "Ficha", related_name="lista", default=None, blank=True
+    )
 
     def __str__(self):
         return f"{self.nome}"
+
 
 class Ficha(models.Model):
     id_ficha = models.AutoField(primary_key=True)
@@ -41,7 +45,9 @@ class Ficha(models.Model):
     classe = models.CharField(max_length=70)
     alinhamento = models.CharField(max_length=70)
     raca = models.CharField(max_length=70)
-    idiomas_Proeficiencias = models.TextField(max_length=500, blank=True, null=True, default="")
+    idiomas_Proeficiencias = models.TextField(
+        max_length=500, blank=True, null=True, default=""
+    )
 
     iniciativa = models.IntegerField()
     qtd_DadosVida = models.IntegerField()
@@ -49,7 +55,9 @@ class Ficha(models.Model):
     vinculos = models.TextField(max_length=500, blank=True, null=True, default="")
     tracosPerso = models.TextField(max_length=500, blank=True, null=True, default="")
     fraquezas = models.TextField(max_length=500, blank=True, null=True, default="")
-    caractHabilidades = models.TextField(max_length=500, blank=True, null=True, default="")    
+    caractHabilidades = models.TextField(
+        max_length=500, blank=True, null=True, default=""
+    )
     pvTotais = models.IntegerField()
     dadoVida = models.CharField(max_length=7)
     deslocamento = models.FloatField()
@@ -77,26 +85,26 @@ class Ficha(models.Model):
 
     publica = models.BooleanField(default=False)
 
-    usuario = models.ForeignKey("Usuario",on_delete=models.CASCADE)
+    usuario = models.ForeignKey("Usuario", on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.nomePerso}"
 
 
-
 class ListaMagia(models.Model):
-    
+
     habiChave = models.CharField(max_length=70)
     cdTR = models.IntegerField()
     bonusAtq = models.IntegerField()
     classeConju = models.CharField(max_length=100)
     slot = models.CharField(max_length=30)
 
-    ficha = models.ForeignKey("Ficha",on_delete=models.CASCADE,null=True)
-    magia = models.ForeignKey("Magias",on_delete=models.CASCADE)
+    ficha = models.ForeignKey("Ficha", on_delete=models.CASCADE, null=True)
+    magia = models.ForeignKey("Magias", on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.ficha}: {self.slot}- {self.magia}"
+
 
 class Magias(models.Model):
     id_magias = models.AutoField(primary_key=True)
@@ -113,29 +121,28 @@ class Magias(models.Model):
         return f"{self.nivel} - {self.nome}"
 
 
-
 class Pericias(models.Model):
     id_pericias = models.AutoField(primary_key=True)
 
     valor = models.IntegerField(default=2)
     nome = models.CharField(max_length=40)
 
-    ficha = models.ForeignKey("Ficha",on_delete=models.CASCADE,null=True)
+    ficha = models.ForeignKey("Ficha", on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f"{self.ficha}: +{self.valor} {self.nome}"
-
 
 
 class Ataque(models.Model):
 
     bonus = models.IntegerField()
 
-    ficha = models.ForeignKey("Ficha",on_delete=models.CASCADE, null=True)
-    arma = models.ForeignKey("Armas",on_delete=models.CASCADE)
+    ficha = models.ForeignKey("Ficha", on_delete=models.CASCADE, null=True)
+    arma = models.ForeignKey("Armas", on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.ficha}: {self.arma} +{self.bonus}"
+
 
 class Armas(models.Model):
     id_armas = models.AutoField(primary_key=True)
@@ -148,16 +155,16 @@ class Armas(models.Model):
         return f"{self.nome} +{self.dano}"
 
 
-
 class CaArmadura(models.Model):
 
     caMod = models.IntegerField()
 
-    ficha = models.ForeignKey("Ficha",on_delete=models.CASCADE,null=True)
-    armadura = models.ForeignKey("Armaduras",on_delete=models.CASCADE)
+    ficha = models.ForeignKey("Ficha", on_delete=models.CASCADE, null=True)
+    armadura = models.ForeignKey("Armaduras", on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.ficha}: {self.armadura} = {self.caMod}"
+
 
 class Armaduras(models.Model):
     id_armadura = models.AutoField(primary_key=True)

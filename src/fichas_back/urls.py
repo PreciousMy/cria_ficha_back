@@ -14,36 +14,37 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework import routers
 
 from fichas.views import (
-    UsuarioViewSet,
+    ArmadurasViewSet,
+    ArmasViewSet,
+    AtaqueViewSet,
+    CaArmadurasViewSet,
     FichaViewSet,
-    PericiasViewSet,
     ListaMagiaViewSet,
     MagiasViewSet,
-    ArmadurasViewSet,
-    CaArmadurasViewSet,
-    AtaqueViewSet,
-    ArmasViewSet
+    PericiasViewSet,
+    UsuarioViewSet,
 )
 
 router = routers.DefaultRouter()
-router.register(r"Usuarios",UsuarioViewSet)
-router.register(r"Fichas",FichaViewSet)
-router.register(r"Pericias",PericiasViewSet)
-router.register(r"MagiaUsadas",ListaMagiaViewSet)
-router.register(r"Magias",MagiasViewSet)
-router.register(r"Armaduras",ArmadurasViewSet)
-router.register(r"ClassesArmadura",CaArmadurasViewSet)
-router.register(r"AtaquesUsados",AtaqueViewSet)
-router.register(r"Armas",ArmasViewSet)
+router.register(r"Usuarios", UsuarioViewSet)
+router.register(r"Fichas", FichaViewSet)
+router.register(r"Pericias", PericiasViewSet)
+router.register(r"MagiaUsadas", ListaMagiaViewSet)
+router.register(r"Magias", MagiasViewSet)
+router.register(r"Armaduras", ArmadurasViewSet)
+router.register(r"ClassesArmadura", CaArmadurasViewSet)
+router.register(r"AtaquesUsados", AtaqueViewSet)
+router.register(r"Armas", ArmasViewSet)
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     path("", include(router.urls)),
-    path('api/', include(router.urls))
+    path("api/", include(router.urls)),
 ]

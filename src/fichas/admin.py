@@ -1,6 +1,16 @@
 from django.contrib import admin
 
-from .models import Usuario,Ficha,Pericias,ListaMagia,Magias,Armaduras,CaArmadura,Ataque,Armas
+from .models import (
+    Armaduras,
+    Armas,
+    Ataque,
+    CaArmadura,
+    Ficha,
+    ListaMagia,
+    Magias,
+    Pericias,
+    Usuario,
+)
 
 # Register your models here.
 
