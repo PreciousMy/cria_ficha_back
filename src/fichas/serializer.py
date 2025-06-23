@@ -12,11 +12,12 @@ from .models import (
     Usuario,
 )
 
-
+# Acho que é necessário olcutar o campo senha e foi acrescentado o "foto_perfil" 
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ["id_usuario", "nome", "email"]
+        fields = ["id_usuario", "nome", "email", "foto_perfil"]
+
 
 
 class FichaSerializer(serializers.HyperlinkedModelSerializer):

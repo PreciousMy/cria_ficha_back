@@ -3,13 +3,15 @@ from django.db import models
 
 # Create your models here.
 
-
+# Adicionado o foto_perfil na classe de usuário
+# Fazer a verificação no front, caso esteja vazio colocar a imagem padrão
 class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True)
 
     nome = models.CharField(max_length=100, default="fulano")
     email = models.CharField(max_length=70, default="email@gmail.com")
     senha = models.CharField(blank=False, default="senhaFraca")
+    foto_perfil = models.TextField()
 
     fichas = models.ManyToManyField(
         "Ficha", related_name="lista", default=None, blank=True
