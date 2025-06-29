@@ -49,8 +49,8 @@ INSTALLED_APPS = [
     "fichas.apps.FichasConfig",
     "django_filters",
     "rest_framework",
-     'rest_framework.authtoken',
-    'djoser',
+    "rest_framework.authtoken",
+    "djoser",
 ]
 
 MIDDLEWARE = [
@@ -92,15 +92,14 @@ REST_FRAMEWORK = {
         # "rest_framework_simplejwt.authentication.JWTAuthentication",
         "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
-          'rest_framework.authentication.TokenAuthentication', 
-
+        "rest_framework.authentication.TokenAuthentication",
     ],
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10,
 }
 
-#" configuração do Djoser"
+# " configuração do Djoser"
 
 DJOSER = {
     "LOGIN_FIELD": "username",

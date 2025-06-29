@@ -3,6 +3,7 @@ from django.db import models
 
 # Create your models here.
 
+
 # Adicionado o foto_perfil na classe de usuário
 # Fazer a verificação no front, caso esteja vazio colocar a imagem padrão
 class Usuario(models.Model):
