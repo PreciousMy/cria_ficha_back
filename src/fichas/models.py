@@ -12,7 +12,7 @@ class Usuario(models.Model):
     nome = models.CharField(max_length=100, default="fulano")
     email = models.CharField(max_length=70, default="email@gmail.com")
     senha = models.CharField(blank=False, default="senhaFraca")
-    foto_perfil = models.TextField()
+    #foto_perfil = models.TextField()
 
     fichas = models.ManyToManyField(
         "Ficha", related_name="lista", default=None, blank=True
