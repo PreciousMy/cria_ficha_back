@@ -46,7 +46,6 @@ router.register(r"Armas", ArmasViewSet)
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include(router.urls)),
-    path("api/", include(router.urls)),
     re_path(r"^auth/", include("djoser.urls")),
-    re_path(r"^auth/", include("djoser.urls.authtoken")),
+    re_path(r"^auth/", include("djoser.urls.jwt")),
 ]

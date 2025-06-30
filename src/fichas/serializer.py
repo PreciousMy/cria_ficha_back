@@ -17,7 +17,7 @@ from .models import (
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ["id_usuario", "nome", "email", "foto_perfil"]
+        fields = ["id_usuario", "nome", "email"]
 
 
 class FichaSerializer(serializers.HyperlinkedModelSerializer):
