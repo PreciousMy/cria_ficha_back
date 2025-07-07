@@ -1,4 +1,4 @@
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 # Create your models here.
@@ -6,20 +6,15 @@ from django.db import models
 
 # Adicionado o foto_perfil na classe de usuário
 # Fazer a verificação no front, caso esteja vazio colocar a imagem padrão
-class Usuario(models.Model):
-    id_usuario = models.AutoField(primary_key=True)
+class Usuario(AbstractUser):
 
-    nome = models.CharField(max_length=100, default="fulano")
-    email = models.CharField(max_length=70, default="email@gmail.com")
-    senha = models.CharField(blank=False, default="senhaFraca")
-    #foto_perfil = models.TextField()
-
+    # foto_perfil = models.TextField()
     fichas = models.ManyToManyField(
         "Ficha", related_name="lista", default=None, blank=True
     )
 
     def __str__(self):
-        return f"{self.nome}"
+        return f"{self.username}"
 
 
 class Ficha(models.Model):

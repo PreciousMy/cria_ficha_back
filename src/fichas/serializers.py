@@ -13,17 +13,19 @@ from .models import (
 )
 
 
-# Acho que é necessário olcutar o campo senha e foi acrescentado o "foto_perfil"
-class UsuarioSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Usuario
-        fields = ["id_usuario", "nome", "email"]
-
-
 class FichaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Ficha
         fields = "__all__"
+
+
+# Acho que é necessário olcutar o campo senha e foi acrescentado o "foto_perfil"
+class UsuarioSerializer(serializers.ModelSerializer):
+    fichas = FichaSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Usuario
+        fields = ["id", "username", "email", "fichas"]
 
 
 class PericiasSerializer(serializers.HyperlinkedModelSerializer):

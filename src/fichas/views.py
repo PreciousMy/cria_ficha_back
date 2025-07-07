@@ -11,7 +11,7 @@ from .models import (
     Pericias,
     Usuario,
 )
-from .serializer import (
+from .serializers import (
     ArmadurasSerializer,
     ArmasSerializer,
     AtaqueSerializer,

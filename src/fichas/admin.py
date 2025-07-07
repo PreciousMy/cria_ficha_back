@@ -13,7 +13,7 @@ from .models import (
 )
 
 # Register your models here.
-
+admin.site.register(Usuario)
 admin.site.register(Ficha)
 admin.site.register(Pericias)
 admin.site.register(ListaMagia)
