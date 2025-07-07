@@ -108,10 +108,15 @@ DJOSER = {
     "USER_CREATE_PASSWORD_RETYPE": True,
     "SERIALIZERS": {
         "user_create": "djoser.serializers.UserCreateSerializer",
-        "user": "djoser.serializers.UserSerializer",
-        "current_user": "djoser.serializers.UserSerializer",
+        "user": "fichas.serializers.UsuarioSerializer",
+        "current_user": "fichas.serializers.UsuarioSerializer",
+    },
+    "PERMISSIONS": {
+        "user_create": ["rest_framework.permissions.AllowAny"],
     },
 }
+
+AUTH_USER_MODEL = "fichas.Usuario"
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",
