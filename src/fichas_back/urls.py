@@ -29,6 +29,7 @@ from fichas.views import (
     MagiasViewSet,
     PericiasViewSet,
     UsuarioViewSet,
+    FichaPublicaViewSet,
 )
 
 router = routers.DefaultRouter()
@@ -41,6 +42,7 @@ router.register(r"Armaduras", ArmadurasViewSet)
 router.register(r"ClassesArmadura", CaArmadurasViewSet)
 router.register(r"AtaquesUsados", AtaqueViewSet)
 router.register(r"Armas", ArmasViewSet)
+router.register(r"FichasPublicas", FichaPublicaViewSet, basename='ficha-publica')
 
 
 urlpatterns = [

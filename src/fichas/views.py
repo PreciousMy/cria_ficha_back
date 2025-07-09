@@ -67,3 +67,8 @@ class AtaqueViewSet(viewsets.ModelViewSet):
 class ArmasViewSet(viewsets.ModelViewSet):
     queryset = Armas.objects.all()
     serializer_class = ArmasSerializer
+
+class FichaPublicaViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = FichaSerializer
+    def get_queryset(self):
+        return Ficha.objects.filter(publica=True)
