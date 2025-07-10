@@ -17,15 +17,15 @@ class FichaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Ficha
         fields = "__all__"
+        read_only_fields = ("usuario",)
 
 
-# Acho que é necessário olcutar o campo senha e foi acrescentado o "foto_perfil"
 class UsuarioSerializer(serializers.ModelSerializer):
-    fichas = FichaSerializer(many=True, read_only=True)
+    fichas = FichaSerializer(source="ficha_set", many=True, read_only=True)
 
     class Meta:
         model = Usuario
-        fields = ["id", "username", "email", "fichas"]
+        fields = ["url", "id", "username", "email", "fichas"]
 
 
 class PericiasSerializer(serializers.HyperlinkedModelSerializer):

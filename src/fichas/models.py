@@ -9,9 +9,6 @@ from django.db import models
 class Usuario(AbstractUser):
 
     # foto_perfil = models.TextField()
-    fichas = models.ManyToManyField(
-        "Ficha", related_name="lista", default=None, blank=True
-    )
 
     def __str__(self):
         return f"{self.username}"
