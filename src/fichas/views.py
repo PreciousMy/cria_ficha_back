@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import permissions, viewsets
 
 from .models import (
     Armaduras,
@@ -30,8 +30,14 @@ class UsuarioViewSet(viewsets.ModelViewSet):
 
 
 class FichaViewSet(viewsets.ModelViewSet):
-    queryset = Ficha.objects.all()
     serializer_class = FichaSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Ficha.objects.filter(usuario=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(usuario=self.request.user)
 
 
 class PericiasViewSet(viewsets.ModelViewSet):
@@ -68,7 +74,9 @@ class ArmasViewSet(viewsets.ModelViewSet):
     queryset = Armas.objects.all()
     serializer_class = ArmasSerializer
 
+
 class FichaPublicaViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = FichaSerializer
+
     def get_queryset(self):
         return Ficha.objects.filter(publica=True)

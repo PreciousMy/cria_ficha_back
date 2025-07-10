@@ -24,17 +24,17 @@ from fichas.views import (
     ArmasViewSet,
     AtaqueViewSet,
     CaArmadurasViewSet,
+    FichaPublicaViewSet,
     FichaViewSet,
     ListaMagiaViewSet,
     MagiasViewSet,
     PericiasViewSet,
     UsuarioViewSet,
-    FichaPublicaViewSet,
 )
 
 router = routers.DefaultRouter()
 router.register(r"Usuarios", UsuarioViewSet)
-router.register(r"Fichas", FichaViewSet)
+router.register(r"Fichas", FichaViewSet, basename="ficha")
 router.register(r"Pericias", PericiasViewSet)
 router.register(r"MagiaUsadas", ListaMagiaViewSet)
 router.register(r"Magias", MagiasViewSet)
@@ -42,7 +42,7 @@ router.register(r"Armaduras", ArmadurasViewSet)
 router.register(r"ClassesArmadura", CaArmadurasViewSet)
 router.register(r"AtaquesUsados", AtaqueViewSet)
 router.register(r"Armas", ArmasViewSet)
-router.register(r"FichasPublicas", FichaPublicaViewSet, basename='ficha-publica')
+router.register(r"FichasPublicas", FichaPublicaViewSet, basename="ficha-publica")
 
 
 urlpatterns = [
